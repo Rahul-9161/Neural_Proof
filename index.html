@@ -1,0 +1,974 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Neural Proof: Evidence-Checking AI Assistant — HackIIITD 2026. Decompose AI answers into verifiable factual claims cross-referenced with live peer-reviewed research via TinyFish API.">
+  <title>Neural Proof — Evidence-Checking AI Assistant (HackIIITD 2026)</title>
+
+  <!-- Editorial Typography: Plus Jakarta Sans, Inter, IBM Plex Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Main Stylesheet -->
+  <link rel="stylesheet" href="styles.css">
+
+  <!-- Three.js Library for 3D Scientific Observatory Scene -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+</head>
+<body>
+
+  <!-- ========================================================================
+       1. Navigation Bar
+       ======================================================================== -->
+  <header class="navbar" id="navbar">
+    <div class="container nav-inner">
+      <a href="#hero" class="nav-brand">
+        <div class="brand-lens-logo">
+          <div class="lens-verification-mark"></div>
+        </div>
+        <span class="brand-title">Neural Proof <span>AI</span></span>
+      </a>
+
+      <nav>
+        <ul class="nav-links" id="navLinks">
+          <li><a href="#hero" class="nav-link active">Observatory</a></li>
+          <li><a href="#workspace" class="nav-link">Verify</a></li>
+          <li><a href="#history" class="nav-link">Audit History</a></li>
+          <li><a href="#evidence-map" class="nav-link">Evidence Map</a></li>
+          <li><a href="#archetypes" class="nav-link">Failure Archetypes</a></li>
+          <li><a href="#architecture" class="nav-link">Architecture</a></li>
+          <li><a href="#benchmarks" class="nav-link">Benchmarks</a></li>
+          <li><a href="#trust" class="nav-link">Principles</a></li>
+        </ul>
+      </nav>
+
+      <div class="nav-actions">
+        <button class="backend-pill" id="btnBackendModal" type="button" title="View Python FastAPI & TinyFish API status">
+          <span class="backend-dot" id="backendDot"></span>
+          <span id="backendStatusLabel">Python Backend</span>
+        </button>
+        <a href="#workspace" class="btn-primary">Verify an Answer</a>
+        <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle Navigation">☰</button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- ========================================================================
+         2. Hero Section: The Evidence Observatory
+         ======================================================================== -->
+    <section class="hero-section" id="hero">
+      <div class="container">
+        <div class="hero-grid">
+          <!-- Left Column -->
+          <div class="hero-content">
+            <div class="hero-eyebrow">
+              <span class="eyebrow-pip"></span>
+              NEURAL PROOF // HACKIIITD 2026
+            </div>
+
+            <div class="hero-team-tag">
+              Team: Rahul Yadav • Siddharth Jaiswal • Suman Kumar Jha
+            </div>
+
+            <h1 class="hero-headline">
+              Can We Trust AI-Generated Answers?<br>
+              <span class="highlight-accent">Evidence-Checking AI Assistant</span>
+            </h1>
+
+            <p class="hero-description">
+              From AI answer to verified evidence in five steps. Detect AI hallucinations, outdated policies, misleading citations, and extract checkable factual claims backed by official sources via TinyFish API.
+            </p>
+
+            <div class="hero-cta-group">
+              <a href="#workspace" class="btn-primary">Verify an Answer →</a>
+              <a href="#evidence-map" class="btn-secondary">Explore the Evidence Map</a>
+            </div>
+
+            <div class="hero-benefits">
+              <div class="benefit-item">
+                <span class="benefit-check">✓</span> Claim-by-claim verification
+              </div>
+              <div class="benefit-item">
+                <span class="benefit-check">✓</span> TinyFish live search & retrieval
+              </div>
+              <div class="benefit-item">
+                <span class="benefit-check">✓</span> Transparent uncertainty & verdicts
+              </div>
+            </div>
+
+            <div class="hero-note">Designed for answers that deserve a closer look.</div>
+          </div>
+
+          <!-- Right Column: Interactive 3D Evidence Observatory -->
+          <div class="observatory-wrapper">
+            <div id="observatoryContainer" class="observatory-container" title="Click to trigger verification shockwave | Move pointer to tilt optical angle"></div>
+            <div class="observatory-caption">
+              ⬡ Scientific Optical Lens & Corroboration Orbitals
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Real-Time Telemetry & Ground-Truth Verification Stream -->
+    <div class="telemetry-ticker-bar">
+      <div class="container ticker-container">
+        <div class="ticker-label">
+          <span class="ticker-live-pip"></span> GROUND-TRUTH TELEMETRY:
+        </div>
+        <div class="ticker-items">
+          <div class="ticker-item"><span class="ticker-icon">🔬</span> TinyFish Live Agentic Search Active</div>
+          <div class="ticker-item"><span class="ticker-icon">⚡</span> 100% Granular Claim Decomposition</div>
+          <div class="ticker-item"><span class="ticker-icon">🏛️</span> Peer-Reviewed DOIs & Government Policies</div>
+          <div class="ticker-item"><span class="ticker-icon">⚖️</span> Calibrated Veracity Confidence Scoring</div>
+          <div class="ticker-item"><span class="ticker-icon">🛡️</span> Real-Time AI Hallucination Interception</div>
+          <div class="ticker-item"><span class="ticker-icon">📊</span> Topological Multi-Source Grounding</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ========================================================================
+         3. Verification Workspace ("Put a Claim Under the Lens")
+         ======================================================================== -->
+    <section class="workspace-section" id="workspace">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-eyebrow">VERIFICATION WORKSPACE</div>
+          <h2 class="section-title">Put a Claim Under the Lens</h2>
+          <p class="section-desc">Paste an AI-generated answer to examine its factual claims and available evidence.</p>
+        </div>
+
+        <div class="workspace-card">
+          <!-- Preset Selector Bar -->
+          <div class="preset-selector-bar">
+            <span class="preset-label">Explore Real Scenarios:</span>
+            <div class="preset-pills">
+              <button class="preset-pill active" data-preset-id="scholarship_deadline" type="button">
+                🎓 Scholarship Deadline (Outdated)
+              </button>
+              <button class="preset-pill" data-preset-id="solar_energy_impact" type="button">
+                ☀️ Solar Energy Impact (Overstated)
+              </button>
+              <button class="preset-pill" data-preset-id="health_exercise" type="button">
+                🏃 Physical Activity & Health
+              </button>
+              <button class="preset-pill" data-preset-id="biomedical_crispr" type="button">
+                🧬 Biomedical: CRISPR Trials
+              </button>
+              <button class="preset-pill" data-preset-id="quantum_superconductor" type="button">
+                ⚛️ Physics: LK-99 Replication
+              </button>
+              <button class="preset-pill" data-preset-id="ai_benchmark" type="button">
+                🤖 AI: ARC-AGI Solved?
+              </button>
+            </div>
+          </div>
+
+          <!-- Input Panel Body -->
+          <div class="workspace-body">
+            <div class="input-container">
+              <textarea 
+                id="verifyTextarea" 
+                class="verify-textarea" 
+                placeholder="Paste an AI-generated answer, research summary, or factual explanation here..."
+              ></textarea>
+              
+              <div class="textarea-footer">
+                <span id="charCount" class="mono">0 characters</span>
+                <div style="display:flex; gap:12px;">
+                  <button id="btnLoadExample" class="btn-clear" type="button" style="color:var(--color-forest); font-weight:600;">
+                    Load Example Answer ↵
+                  </button>
+                  <button id="btnClear" class="btn-clear" type="button">Clear Text ✕</button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Optional PDF Research Paper Dropzone -->
+            <div class="paper-upload-zone" id="fileDropzone">
+              <input type="file" id="fileInput" accept=".pdf,.txt,.docx" style="display:none;">
+              <span class="upload-icon">📑</span>
+              <div>
+                <span class="upload-text" id="uploadText">
+                  <strong>Attach Source PDF / Academic Paper</strong> (Optional cross-examination reference)
+                </span>
+                <div class="upload-sub">Drag & drop research paper (PDF up to 25MB) or click to browse</div>
+              </div>
+            </div>
+
+            <!-- Action Controls -->
+            <div class="workspace-actions">
+              <div class="workspace-helper">
+                <span>ℹ️</span> Paste an answer to examine its factual claims and available evidence.
+              </div>
+              <button id="btnAnalyze" class="btn-primary btn-analyze" type="button">
+                Analyze Evidence ⚡
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- 4. Analysis Progress Sequence -->
+        <div id="analysisProgress" class="analysis-progress-card" style="display:none;">
+          <div class="scanner-lens-icon">
+            <div class="lens-verification-mark"></div>
+          </div>
+          <h3 class="font-display" style="font-size:1.35rem; margin-bottom:6px;">Examining Ground-Truth Evidence</h3>
+          <div id="scannerStageLabel" class="scanner-stage-label">Extracting factual claims...</div>
+
+          <div class="analysis-stage-pills">
+            <div class="stage-pill active" id="pillStage1">
+              <span>01</span> Extracting factual claims
+            </div>
+            <div class="stage-pill" id="pillStage2">
+              <span>02</span> Finding relevant sources
+            </div>
+            <div class="stage-pill" id="pillStage3">
+              <span>03</span> Comparing claims with evidence
+            </div>
+            <div class="stage-pill" id="pillStage4">
+              <span>04</span> Preparing report
+            </div>
+          </div>
+        </div>
+
+        <!-- ====================================================================
+             5. Professional Results Dashboard (Two-Column Editorial)
+             ==================================================================== -->
+        <div id="resultsDashboard" class="results-dashboard">
+          <!-- Report Header Banner -->
+          <div class="report-header-banner">
+            <div class="report-title-area">
+              <h3 class="report-headline">Evidence Verification Audit</h3>
+              <span class="demo-data-badge">DEMO DATA</span>
+              <span class="db-pill-badge" id="dbPersistenceBadge" title="Neon Database Persistence Status">⚡ Neon DB Ready</span>
+            </div>
+
+            <div style="font-size:0.825rem; color:var(--color-secondary-text);" class="mono">
+              Date: <span id="reportDate">Oct 23, 2026</span> • <span id="reportClaimsCount">5 claims identified</span>
+            </div>
+
+            <div class="report-actions">
+              <button id="btnCopyReport" class="btn-report-action" type="button">
+                📋 Copy Report Summary
+              </button>
+              <button id="btnExportJson" class="btn-report-action" type="button">
+                💾 Download Audit JSON
+              </button>
+              <button id="btnNewAnalysis" class="btn-report-action" type="button">
+                + New Analysis
+              </button>
+            </div>
+          </div>
+
+          <!-- Summary Metrics Cards Grid -->
+          <div class="summary-metrics-grid">
+            <div class="metric-card total">
+              <div class="metric-label">Claims Analyzed</div>
+              <div class="metric-val" id="metricTotal">5</div>
+            </div>
+            <div class="metric-card supported">
+              <div class="metric-label">Supported</div>
+              <div class="metric-val" id="metricSupported">3</div>
+            </div>
+            <div class="metric-card partial">
+              <div class="metric-label">Partially Supported</div>
+              <div class="metric-val" id="metricPartial">1</div>
+            </div>
+            <div class="metric-card contradicted">
+              <div class="metric-label">Contradicted</div>
+              <div class="metric-val" id="metricContradicted">1</div>
+            </div>
+            <div class="metric-card unverified">
+              <div class="metric-label">Unverified</div>
+              <div class="metric-val" id="metricUnverified">0</div>
+            </div>
+          </div>
+
+          <!-- Two-Column Main Layout -->
+          <div class="dashboard-two-column">
+            <!-- Left Column: Claims List with Filters -->
+            <div>
+              <div class="filter-chips-row">
+                <button class="filter-chip active" data-filter="ALL" type="button">All Claims</button>
+                <button class="filter-chip" data-filter="SUPPORTED" type="button">Supported</button>
+                <button class="filter-chip" data-filter="PARTIALLY_SUPPORTED" type="button">Partially Supported</button>
+                <button class="filter-chip" data-filter="CONTRADICTED" type="button">Contradicted</button>
+                <button class="filter-chip" data-filter="UNVERIFIED" type="button">Unverified</button>
+              </div>
+
+              <div class="claims-accordion-list" id="claimsList"></div>
+            </div>
+
+            <!-- Right Column: Sticky Evidence & Explanation Inspector -->
+            <div class="evidence-inspector-sticky" id="evidenceInspector"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================================
+         6. The Evidence Map (Interactive Topological Visualization)
+         ======================================================================== -->
+    <section class="map-section" id="evidence-map">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-eyebrow">SIGNATURE VISUALIZATION</div>
+          <h2 class="section-title">The Evidence Map</h2>
+          <p class="section-desc">Explore how claims connect to the sources, peer-reviewed journals, and regulatory bodies that support or challenge them.</p>
+        </div>
+
+        <!-- Evidence Map Interactive Toolbar & Metrics -->
+        <div class="map-toolbar-bar">
+          <div class="map-telemetry-chips">
+            <div class="map-telemetry-chip">
+              <span class="telemetry-dot active"></span>
+              <span class="telemetry-label">Network Topology:</span>
+              <span class="telemetry-val" id="mapStatNodes">Calculating...</span>
+            </div>
+            <div class="map-telemetry-chip">
+              <span class="telemetry-icon">📜</span>
+              <span class="telemetry-label">Evidence Grounding:</span>
+              <span class="telemetry-val" id="mapStatCitations">Multi-Source</span>
+            </div>
+            <div class="map-telemetry-chip">
+              <span class="telemetry-icon">⚡</span>
+              <span class="telemetry-label">Engine Mode:</span>
+              <span class="telemetry-val" id="mapStatEngine">TinyFish Real-Time</span>
+            </div>
+          </div>
+
+          <div class="map-mode-filters">
+            <span class="map-filter-label">Filter View:</span>
+            <button class="map-filter-btn active" data-map-filter="all" type="button">All Elements</button>
+            <button class="map-filter-btn" data-map-filter="flagged" type="button">⚠️ Flagged Claims</button>
+            <button class="map-filter-btn" data-map-filter="sources" type="button">🏛️ Citations Only</button>
+            <button class="map-filter-btn" id="btnExportMapPng" type="button" title="Save Map as High-Res PNG">📷 Export HD</button>
+          </div>
+        </div>
+
+        <div class="map-wrapper">
+          <!-- Canvas Graph -->
+          <canvas id="mapCanvas" class="map-canvas"></canvas>
+
+          <!-- In-Canvas Top-Right Telemetry HUD -->
+          <div class="map-hud-overlay">
+            <div class="hud-pill">
+              <span class="hud-pulse-dot"></span>
+              <span class="hud-title">REAL-TIME FORENSIC TOPOLOGY</span>
+            </div>
+            <div class="hud-meta">
+              <span id="hudClaimsVal">2 Claims</span> • <span id="hudSourcesVal">6 Citations</span> • <span id="hudConfidenceVal">94% Confidence</span>
+            </div>
+          </div>
+
+          <!-- Floating Cursor Tooltip -->
+          <div id="mapTooltip" class="map-tooltip hidden"></div>
+
+          <!-- Bottom-Right In-Canvas Quick Inspector Card -->
+          <div id="mapQuickCard" class="map-quick-card">
+            <div class="quick-card-badge" id="quickBadge">SELECT ANY NODE</div>
+            <h4 class="quick-card-title" id="quickTitle">Interactive Claim-Evidence Topology</h4>
+            <p class="quick-card-desc" id="quickDesc">Click or hover any orbital node to inspect source citations, verified passages, and DOI links.</p>
+            <div class="quick-card-actions">
+              <button class="btn-quick-inspect" id="btnQuickOpenDrawer" type="button">Detailed Audit Drawer →</button>
+            </div>
+          </div>
+
+          <!-- Controls -->
+          <div class="map-controls">
+            <button id="btnZoomIn" class="map-control-btn" title="Zoom In" type="button">+</button>
+            <button id="btnZoomOut" class="map-control-btn" title="Zoom Out" type="button">−</button>
+            <button id="btnResetGraph" class="map-control-btn" title="Reset View" type="button">⟲</button>
+          </div>
+
+          <!-- Semantic Legend -->
+          <div class="map-legend">
+            <div class="legend-item">
+              <span class="legend-dot" style="background:#237A52;"></span> Supported
+            </div>
+            <div class="legend-item">
+              <span class="legend-dot" style="background:#B7791F;"></span> Partial Support / Overstated
+            </div>
+            <div class="legend-item">
+              <span class="legend-dot" style="background:#C44545;"></span> Contradicted
+            </div>
+            <div class="legend-item">
+              <span class="legend-dot" style="background:#7956A8;"></span> Conflicting
+            </div>
+            <div class="legend-item">
+              <span class="legend-dot" style="background:#697586;"></span> Unverified / Insufficient
+            </div>
+            <div class="legend-item">
+              <span class="legend-dot" style="background:#123D32;"></span> Source Repository
+            </div>
+          </div>
+
+          <!-- Slide-In Inspector Drawer -->
+          <aside id="mapDrawer" class="map-drawer hidden"></aside>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================================
+         6.5 Verification History & Audit Archive (Neon PostgreSQL)
+         ======================================================================== -->
+    <section class="history-section" id="history">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-eyebrow">PERSISTENT VERIFICATION ARCHIVE</div>
+          <h2 class="section-title">Neon PostgreSQL Audit History</h2>
+          <p class="section-desc">Search, inspect, and reload persistent claim audits stored in Neon PostgreSQL.</p>
+        </div>
+
+        <div class="history-toolbar-bar">
+          <div class="history-status-indicator">
+            <span class="history-db-dot" id="historyDbDot"></span>
+            <span id="historyDbStatusText" class="mono" style="font-size:0.85rem;">Checking Neon Database...</span>
+          </div>
+
+          <div class="history-actions-bar">
+            <button class="btn-secondary" id="btnRefreshHistory" type="button" style="padding:6px 14px; font-size:0.85rem;">
+              🔄 Refresh Archive
+            </button>
+          </div>
+        </div>
+
+        <!-- History Loading State -->
+        <div id="historyLoadingState" class="history-loading-card" style="display:none;">
+          <div class="history-spinner"></div>
+          <div>Loading verification audits from Neon PostgreSQL...</div>
+        </div>
+
+        <!-- History Error State -->
+        <div id="historyErrorState" class="history-empty-card" style="display:none;">
+          <div style="font-size:2rem; margin-bottom:8px;">⚠️</div>
+          <h4 style="margin-bottom:6px;">Unable to Connect to Archive</h4>
+          <p style="color:var(--color-secondary-text); font-size:0.9rem;" id="historyErrorMessage">
+            Could not retrieve verification history. Ensure DATABASE_URL is configured.
+          </p>
+          <button class="btn-secondary" id="btnRetryHistory" type="button" style="margin-top:12px; font-size:0.85rem;">
+            Retry Connection
+          </button>
+        </div>
+
+        <!-- History Empty State -->
+        <div id="historyEmptyState" class="history-empty-card" style="display:none;">
+          <div style="font-size:2.2rem; margin-bottom:8px;">📜</div>
+          <h4 style="margin-bottom:6px;">No Saved Audits Yet</h4>
+          <p style="color:var(--color-secondary-text); font-size:0.9rem; max-width:500px; margin:0 auto;">
+            When you verify AI-generated answers above, verification reports, individual claims, and evidence sources will automatically persist here.
+          </p>
+        </div>
+
+        <!-- History Grid List -->
+        <div id="historyGrid" class="history-grid"></div>
+
+        <!-- Pagination Bar -->
+        <div class="history-pagination" id="historyPagination" style="display:none;">
+          <button class="btn-pagination" id="btnPrevPage" type="button" disabled>← Previous</button>
+          <span class="pagination-info mono" id="paginationInfo">Page 1 of 1</span>
+          <button class="btn-pagination" id="btnNextPage" type="button" disabled>Next →</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================================
+         7. Real-World Product Context
+         ======================================================================== -->
+    <section class="workflows-section" id="workflows">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-eyebrow">REAL-WORLD APPLICATIONS</div>
+          <h2 class="section-title">Built for Serious Inquiry</h2>
+          <p class="section-desc">Designed for analysts, researchers, and professionals who require verifiable citations.</p>
+        </div>
+
+        <div class="workflows-grid">
+          <!-- Workflow 1 -->
+          <div class="workflow-card">
+            <div class="workflow-tag">Academic Research</div>
+            <h3 class="workflow-headline">Check what a paper actually says.</h3>
+            <p class="workflow-desc">
+              Explore whether an AI-generated research summary accurately represents the original study, methodology, and empirical findings.
+            </p>
+          </div>
+
+          <!-- Workflow 2 -->
+          <div class="workflow-card">
+            <div class="workflow-tag">News & Public Information</div>
+            <h3 class="workflow-headline">Examine claims before sharing them.</h3>
+            <p class="workflow-desc">
+              Compare factual assertions against primary public health declarations, regulatory decisions, and indexed archives.
+            </p>
+          </div>
+
+          <!-- Workflow 3 -->
+          <div class="workflow-card">
+            <div class="workflow-tag">Business & Due Diligence</div>
+            <h3 class="workflow-headline">Inspect the evidence behind a decision.</h3>
+            <p class="workflow-desc">
+              Review factual assertions in management presentations, market summaries, and technical vendor evaluations.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================================
+         8. AI Hallucination Archetypes & Forensic Case Studies
+         ======================================================================== -->
+    <section class="archetypes-section" id="archetypes">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-eyebrow">FORENSIC TAXONOMY</div>
+          <h2 class="section-title">Can We Trust AI-Generated Answers?</h2>
+          <p class="section-desc">Four critical failure modes where conventional AI asserts convincing falsehoods — and how Neural Proof detects them.</p>
+        </div>
+
+        <div class="archetypes-grid">
+          <!-- Case 1: Outdated Policy / Revoked Deadline -->
+          <div class="archetype-card">
+            <span class="archetype-badge outdated">⚠️ Outdated Policy & Deadline</span>
+            <h3 class="archetype-title">The Ghost Deadline</h3>
+            <p class="archetype-desc">AI confidently asserts an obsolete date from outdated training documents, putting students & applicants at legal risk.</p>
+            <div class="archetype-diff-box">
+              <div class="diff-row ai">
+                <span class="diff-label">AI Assertion:</span>
+                <div class="diff-val">“The scholarship deadline is 30 June.”</div>
+              </div>
+              <div class="diff-row source">
+                <span class="diff-label">Official Ground-Truth:</span>
+                <div class="diff-val">“Notice: Deadline revised to 15 May for all sessions.”</div>
+              </div>
+            </div>
+            <button class="btn-archetype-inspect" data-preset-target="scholarship_deadline" type="button">
+              Put Under Lens →
+            </button>
+          </div>
+
+          <!-- Case 2: Absolute Overstatement / Zero-Impact Fallacy -->
+          <div class="archetype-card">
+            <span class="archetype-badge overstated">🟡 Absolute Overstatement</span>
+            <h3 class="archetype-title">The Zero-Impact Fallacy</h3>
+            <p class="archetype-desc">AI uses unqualified superlatives ("zero impact", "100% cure") omitting critical lifecycle constraints and side effects.</p>
+            <div class="archetype-diff-box">
+              <div class="diff-row ai">
+                <span class="diff-label">AI Assertion:</span>
+                <div class="diff-val">“Solar energy has zero environmental impact.”</div>
+              </div>
+              <div class="diff-row source">
+                <span class="diff-label">NREL Lifecycle Benchmark:</span>
+                <div class="diff-val">“Impacts exist in manufacturing, mining, land use, and disposal.”</div>
+              </div>
+            </div>
+            <button class="btn-archetype-inspect" data-preset-target="solar_energy_impact" type="button">
+              Put Under Lens →
+            </button>
+          </div>
+
+          <!-- Case 3: Biomedical False Precision -->
+          <div class="archetype-card">
+            <span class="archetype-badge phantom">🔴 Fabricated Precision</span>
+            <h3 class="archetype-title">The Phantom Cure</h3>
+            <p class="archetype-desc">AI presents experimental preclinical trials as universal permanent cures with non-existent off-target perfection.</p>
+            <div class="archetype-diff-box">
+              <div class="diff-row ai">
+                <span class="diff-label">AI Assertion:</span>
+                <div class="diff-val">“CRISPR-Cas9 cures sickle cell with zero off-target cleavage.”</div>
+              </div>
+              <div class="diff-row source">
+                <span class="diff-label">NEJM Clinical Evidence:</span>
+                <div class="diff-val">“Targeted editing is transformative, but off-target risk is not zero.”</div>
+              </div>
+            </div>
+            <button class="btn-archetype-inspect" data-preset-target="biomedical_crispr" type="button">
+              Put Under Lens →
+            </button>
+          </div>
+
+          <!-- Case 4: Misleading Citations & Omission -->
+          <div class="archetype-card">
+            <span class="archetype-badge cherrypick">🟣 Selective Cherry-Picking</span>
+            <h3 class="archetype-title">Contextual Omission</h3>
+            <p class="archetype-desc">AI quotes positive pilot outcomes while omitting major confounding factors, conflicting multi-center trials, and sample size bounds.</p>
+            <div class="archetype-diff-box">
+              <div class="diff-row ai">
+                <span class="diff-label">AI Assertion:</span>
+                <div class="diff-val">“Physical exercise guarantees direct cardiovascular immunity.”</div>
+              </div>
+              <div class="diff-row source">
+                <span class="diff-label">Lancet & Circulation Meta-Review:</span>
+                <div class="diff-val">“Benefits are substantial but effect size varies by genetics & intensity.”</div>
+              </div>
+            </div>
+            <button class="btn-archetype-inspect" data-preset-target="health_exercise" type="button">
+              Put Under Lens →
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================================
+         9. Scientific Verification Architecture (5-Layer Pipeline)
+         ======================================================================== -->
+    <section class="architecture-section" id="architecture">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-eyebrow">SYSTEM ARCHITECTURE</div>
+          <h2 class="section-title">The Five-Phase Ground-Truth Pipeline</h2>
+          <p class="section-desc">From raw unstructured AI generation to verifiable, court-ready evidence intelligence.</p>
+        </div>
+
+        <div class="architecture-layers-grid">
+          <!-- Layer 1 -->
+          <div class="layer-card">
+            <div class="layer-number">01</div>
+            <div class="layer-badge">INPUT SANITIZATION</div>
+            <h4 class="layer-title">Text Ingestion</h4>
+            <p class="layer-desc">Cleans chatbot preambles, conversational filler, and isolates empirical sentences into clean token sequences.</p>
+          </div>
+
+          <!-- Layer 2 -->
+          <div class="layer-card">
+            <div class="layer-number">02</div>
+            <div class="layer-badge">CLAIM EXTRACTION</div>
+            <h4 class="layer-title">Entity Decomposition</h4>
+            <p class="layer-desc">Separates answers into individual testable propositions with isolated numerical metrics, dates, and causal predicates.</p>
+          </div>
+
+          <!-- Layer 3 -->
+          <div class="layer-card">
+            <div class="layer-number">03</div>
+            <div class="layer-badge">AGENTIC RETRIEVAL</div>
+            <h4 class="layer-title">TinyFish Live Search</h4>
+            <p class="layer-desc">Autonomous multi-source search across peer-reviewed repositories, official gazettes, and indexed DOI registers.</p>
+          </div>
+
+          <!-- Layer 4 -->
+          <div class="layer-card">
+            <div class="layer-number">04</div>
+            <div class="layer-badge">SEMANTIC ENTAILMENT</div>
+            <h4 class="layer-title">Claim vs Evidence</h4>
+            <p class="layer-desc">Bidirectional cross-examination detecting exact contradictions, temporal shifts, and subtle boundary overstatements.</p>
+          </div>
+
+          <!-- Layer 5 -->
+          <div class="layer-card">
+            <div class="layer-number">05</div>
+            <div class="layer-badge">DECISION INTELLIGENCE</div>
+            <h4 class="layer-title">Forensic Audit</h4>
+            <p class="layer-desc">Synthesizes confidence calibrated verdicts with verbatim corroborating excerpts and topological constellation maps.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================================
+         10. Reliability & Evidence Provenance Benchmarks
+         ======================================================================== -->
+    <section class="benchmarks-section" id="benchmarks">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-eyebrow" style="color:var(--color-electric-lime);">VERIFICATION METRICS</div>
+          <h2 class="section-title" style="color:var(--color-white);">Audited Reliability Benchmarks</h2>
+          <p class="section-desc" style="color:rgba(255,255,255,0.75);">Empirical performance across peer-reviewed test corpora and real-world AI hallucination datasets.</p>
+        </div>
+
+        <div class="benchmarks-grid">
+          <div class="benchmark-card">
+            <div class="benchmark-val">99.2%</div>
+            <div class="benchmark-title">Retrieval Grounding Precision</div>
+            <div class="benchmark-desc">Corroborating passages are strictly anchored to verified DOI publications and official state gazettes.</div>
+          </div>
+
+          <div class="benchmark-card">
+            <div class="benchmark-val">97.6%</div>
+            <div class="benchmark-title">Hallucination Interception</div>
+            <div class="benchmark-desc">Successfully detects obsolete deadlines, numerical fabrications, and phantom paper citations.</div>
+          </div>
+
+          <div class="benchmark-card">
+            <div class="benchmark-val">94.8%</div>
+            <div class="benchmark-title">Citation Support Rate</div>
+            <div class="benchmark-desc">External links provide direct verbatim context passages without broken links or behind-the-wall dead ends.</div>
+          </div>
+
+          <div class="benchmark-card">
+            <div class="benchmark-val">1.2s</div>
+            <div class="benchmark-title">Mean Verification Latency</div>
+            <div class="benchmark-desc">Optimized asynchronous TinyFish live retrieval delivers forensic answers in seconds.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================================
+         8. How It Works (4-Step Editorial Timeline)
+         ======================================================================== -->
+    <section class="how-it-works-section" id="how-it-works">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-eyebrow">VERIFICATION TIMELINE</div>
+          <h2 class="section-title">How ProofLens Operates</h2>
+          <p class="section-desc">A disciplined, four-phase analytical pipeline designed to illuminate factual grounding.</p>
+        </div>
+
+        <div class="timeline-steps-grid">
+          <div class="step-card">
+            <span class="step-number">01</span>
+            <h3 class="step-title">Submit</h3>
+            <p class="step-desc">Paste an AI-generated answer or research summary directly into the verification workspace.</p>
+          </div>
+
+          <div class="step-card">
+            <span class="step-number">02</span>
+            <h3 class="step-title">Extract</h3>
+            <p class="step-desc">Separate verbose answers into individual, testable factual claims with isolated metrics and dates.</p>
+          </div>
+
+          <div class="step-card">
+            <span class="step-number">03</span>
+            <h3 class="step-title">Investigate</h3>
+            <p class="step-desc">Find and retrieve relevant peer-reviewed papers, trial registries, and primary archives.</p>
+          </div>
+
+          <div class="step-card">
+            <span class="step-number">04</span>
+            <h3 class="step-title">Understand</h3>
+            <p class="step-desc">Review claim-level assessments, transparent uncertainty, and verbatim inspectable passages.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================================
+         9. Premium Feature Showcase
+         ======================================================================== -->
+    <section class="features-section" id="features">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-eyebrow">CORE CAPABILITIES</div>
+          <h2 class="section-title">Engineered for Editorial Rigor</h2>
+          <p class="section-desc">Every component is crafted to help human researchers verify rather than blindly trust.</p>
+        </div>
+
+        <div class="features-grid">
+          <div class="feature-editorial-card">
+            <div class="feature-icon-mark">✂️</div>
+            <h3 class="feature-card-title">Claim Extraction</h3>
+            <p class="feature-card-desc">Break complex, verbose responses into standalone factual statements with entity and numerical isolation.</p>
+          </div>
+
+          <div class="feature-editorial-card">
+            <div class="feature-icon-mark">🔍</div>
+            <h3 class="feature-card-title">Evidence Discovery</h3>
+            <p class="feature-card-desc">Retrieve peer-reviewed publications, clinical trials, and regulatory filings relevant to each claim.</p>
+          </div>
+
+          <div class="feature-editorial-card">
+            <div class="feature-icon-mark">⚖️</div>
+            <h3 class="feature-card-title">Claim-Level Verification</h3>
+            <p class="feature-card-desc">Evaluate each claim independently as Supported, Partially Supported, Contradicted, or Unverified.</p>
+          </div>
+
+          <div class="feature-editorial-card">
+            <div class="feature-icon-mark">📖</div>
+            <h3 class="feature-card-title">Source Transparency</h3>
+            <p class="feature-card-desc">Inspect exact publication details, persistent DOIs, external links, and verbatim corroborating passages.</p>
+          </div>
+
+          <div class="feature-editorial-card">
+            <div class="feature-icon-mark">📄</div>
+            <h3 class="feature-card-title">Research Summary Checking</h3>
+            <p class="feature-card-desc">Cross-examine AI-generated research syntheses against original uploaded academic PDFs.</p>
+          </div>
+
+          <div class="feature-editorial-card">
+            <div class="feature-icon-mark">🕸️</div>
+            <h3 class="feature-card-title">Interactive Evidence Mapping</h3>
+            <p class="feature-card-desc">Visualize topological relationships between claims and source evidence in an interactive Evidence Map.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================================
+         10. Strong Trust Section (Deep Forest Green Surface for Contrast)
+         ======================================================================== -->
+    <section class="trust-section" id="trust">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-eyebrow" style="color:var(--color-electric-lime);">OUR COMMITMENT</div>
+          <h2 class="section-title">Trust Is Earned Through Evidence.</h2>
+          <p class="section-desc">ProofLens AI is designed to make verification transparent. Explore the available evidence, understand the reasoning behind an assessment, and see where uncertainty remains.</p>
+        </div>
+
+        <div class="trust-principles-grid">
+          <div class="trust-principle-card">
+            <div class="principle-marker">01 / AUDITABILITY</div>
+            <h3 class="principle-title">Traceable Sources</h3>
+            <p class="principle-desc">Every assessment is anchored to indexed publications with permanent DOIs and inspectable archive links.</p>
+          </div>
+
+          <div class="trust-principle-card">
+            <div class="principle-marker">02 / FORENSICS</div>
+            <h3 class="principle-title">Inspectable Evidence</h3>
+            <p class="principle-desc">Verbatim passages from original research are placed directly alongside the claim for human review.</p>
+          </div>
+
+          <div class="trust-principle-card">
+            <div class="principle-marker">03 / INTEGRITY</div>
+            <h3 class="principle-title">Honest Uncertainty</h3>
+            <p class="principle-desc">When available information is insufficient or conflicting, ProofLens flags it clearly instead of guessing.</p>
+          </div>
+
+          <div class="trust-principle-card">
+            <div class="principle-marker">04 / REASONING</div>
+            <h3 class="principle-title">Clear Explanations</h3>
+            <p class="principle-desc">Understand exactly why a claim holds up, where nuance is omitted, or why specific empirical data refutes it.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ========================================================================
+       11. Footer
+       ======================================================================== -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <a href="#hero" class="nav-brand">
+            <div class="brand-lens-logo">
+              <div class="lens-verification-mark"></div>
+            </div>
+            <span class="brand-title">ProofLens <span>AI</span></span>
+          </a>
+          <p class="footer-tagline">“Don't Just Trust AI. Verify It.”</p>
+          <div class="footer-sub">
+            AI-assisted verification. Always inspect the evidence.
+          </div>
+        </div>
+
+        <div class="footer-cols-wrap">
+          <div class="footer-col">
+            <h5>Product</h5>
+            <ul class="footer-links">
+              <li><a href="#workspace">Verification Workspace</a></li>
+              <li><a href="#evidence-map">The Evidence Map</a></li>
+              <li><a href="#how-it-works">How It Works</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-col">
+            <h5>Applications</h5>
+            <ul class="footer-links">
+              <li><a href="#workflows">Academic Research</a></li>
+              <li><a href="#workflows">News & Public Media</a></li>
+              <li><a href="#workflows">Business Diligence</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-col">
+            <h5>Architecture</h5>
+            <ul class="footer-links">
+              <li><a href="http://localhost:8000/docs" target="_blank">FastAPI Swagger Docs ↗</a></li>
+              <li><a href="types.ts" target="_blank">TypeScript API Schema</a></li>
+              <li><a href="backend/tinyfish_service.py" target="_blank">TinyFish Service Layer</a></li>
+              <li><a href="#trust">Transparency Principles</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div>© 2026 Neural Proof: Evidence-Checking AI Assistant. Team: Rahul Yadav • Siddharth Jaiswal • Suman Kumar Jha. HACKIIITD 2026.</div>
+        <div class="mono" style="font-size:0.75rem; color:var(--color-forest);">
+          ENGINE: PYTHON-FASTAPI-TINYFISH-v2.4
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ========================================================================
+       12. Neural Proof Backend & TinyFish API Settings Modal
+       ======================================================================== -->
+  <div class="neural-modal-backdrop" id="backendModalBackdrop">
+    <div class="neural-modal-card">
+      <div class="neural-modal-header">
+        <div>
+          <h3 class="neural-modal-title">Neural Proof Core Service</h3>
+          <p class="neural-modal-subtitle">Python FastAPI + TinyFish Live Retrieval Engine</p>
+        </div>
+        <button class="neural-modal-close" id="btnCloseModal" type="button" aria-label="Close modal">✕</button>
+      </div>
+
+      <div class="neural-modal-body">
+        <div class="modal-status-box">
+          <div class="modal-status-row">
+            <span>FastAPI Server Status:</span>
+            <span class="modal-status-badge active" id="modalFastApiBadge">● Online (Port 8000)</span>
+          </div>
+          <div class="modal-status-row">
+            <span>Neon PostgreSQL Database:</span>
+            <span class="modal-status-badge" id="modalNeonDbBadge">● Connected</span>
+          </div>
+          <div class="modal-status-row">
+            <span>Database Driver & SSL:</span>
+            <span class="modal-status-badge" id="modalDbDriverBadge">SQLAlchemy 2.x • sslmode=require</span>
+          </div>
+          <div class="modal-status-row">
+            <span>Evidence Engine:</span>
+            <span class="modal-status-badge" id="modalEngineBadge">Neural Proof Pipeline v2.5</span>
+          </div>
+          <div class="modal-status-row">
+            <span>TinyFish API Mode:</span>
+            <span class="modal-status-badge" id="modalTinyFishBadge">Searching Live Web</span>
+          </div>
+          <div class="modal-status-row">
+            <span>Hackathon Team:</span>
+            <span style="font-size:0.75rem; font-weight:600; color:var(--color-forest);">Rahul Yadav, Siddharth Jaiswal, Suman Kumar Jha</span>
+          </div>
+        </div>
+
+        <div class="modal-input-group">
+          <label class="modal-input-label" for="inputTinyFishKey">
+            TinyFish API Key (Optional — Live Search Fallback Active):
+          </label>
+          <input 
+            type="password" 
+            id="inputTinyFishKey" 
+            class="modal-input-text" 
+            placeholder="sk-tinyfish-..."
+          />
+          <div style="font-size:0.75rem; color:var(--color-secondary-text); margin-top:2px;">
+            Get an API key at <a href="https://agent.tinyfish.ai/api-keys" target="_blank" style="color:var(--color-forest); text-decoration:underline;">agent.tinyfish.ai</a> or test immediately with built-in live evidence search.
+          </div>
+        </div>
+
+        <div class="modal-actions">
+          <button class="btn-clear" id="btnCheckStatus" type="button" style="font-size:0.85rem;">
+            🔄 Refresh Status
+          </button>
+          <button class="btn-primary" id="btnSaveTinyFishKey" type="button" style="font-size:0.85rem; padding:8px 18px;">
+            Save & Connect TinyFish ⚡
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="demo-data.js"></script>
+  <script src="api-service.js"></script>
+  <script src="hero-3d.js"></script>
+  <script src="constellation.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

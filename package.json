@@ -1,0 +1,21 @@
+{
+  "name": "evidence-checking-ai-assistant",
+  "version": "2.5.0",
+  "description": "ProofLens AI — Evidence-Checking AI Assistant with Neon PostgreSQL & TinyFish",
+  "scripts": {
+    "dev": "python -m http.server 3000 --bind 127.0.0.1",
+    "serve": "python -m http.server 3000 --bind 127.0.0.1",
+    "start": "python server.py",
+    "backend": "python server.py",
+    "test": "python -m pytest tests/test_database_integration.py -v"
+  },
+  "keywords": [
+    "ai",
+    "evidence-checking",
+    "fastapi",
+    "neon-postgresql",
+    "tinyfish"
+  ],
+  "author": "Rahul Yadav, Siddharth Jaiswal, Suman Kumar Jha",
+  "license": "MIT"
+}
